@@ -1,0 +1,32 @@
+.scale(@ratio:.2.8) {
+  .transform(scale(@ratio));
+}
+
+.rotation(@deg:13deg) {
+  .transform(rotate(@deg));
+}
+
+.opacity(@opacity: 0.9) {
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+  background: @color;
+  background: -moz-linear-gradient(center bottom, @start 0%, @stop 100%);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, @start), color-stop(1, @stop));
+  background: -ms-linear-gradient(bottom, @start, @stop);
+  background: -o-linear-gradient(@stop, @start);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.drop-shadow(@x-axis: 0, @y-axis: 2px, @blur: 3px, @alpha: 0.3) {
+  -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}

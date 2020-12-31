@@ -1,0 +1,43 @@
+<div ng-controller="contactController">
+	<form ng-submit="submit()" class="form-horizontal">
+
+		<fieldset>
+			<legend>Contact Form</legend>
+
+			<div class="form-group"> 
+			  <div class="col-md-4">
+			  	<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required>
+			  </div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+				  <div class="col-md-4">
+				  	<input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required>
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <div class="col-md-4">
+				  	<select ng-model="reasonsModel" ng-options="reasons.reason for reason in reasons" required></select>
+				  	<option value="">Reason for contact</option>
+				  </div>
+				</div>
+			</div>
+
+			<div class="form-group">
+			  <div class="col-md-4">                     
+			    <textarea id="textarea" name="textarea" class="form-control" required>Message</textarea>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <div class="col-md-4">                     
+			    <input type="submit" id="submit" value="Submit" />
+			  </div>
+			</div>
+
+		</fieldset>
+
+	</form>
+</div>

@@ -1,0 +1,42 @@
+# App
+.classpath
+.project
+.settings/
+public
+dist
+target/
+.idea
+coverage
+
+# Node Environment
+npm-debug.*
+node_modules
+bower_components
+.sass-cache
+
+# OS Environment
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Filetypes
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.log
+*.tmp
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

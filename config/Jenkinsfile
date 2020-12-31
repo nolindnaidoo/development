@@ -1,0 +1,65 @@
+#!/usr/bin/env groovy
+
+def err = null
+currentBuild.result = "SUCCESS"
+
+node {
+  try {
+    stage('Checkout Code') {
+      checkout scm
+    }
+
+    env.PATH = "${tool 'Maven 3.3.3'}/bin:${env.PATH}"
+
+    stage('Clean Before Build') {
+      sh 'mvn clean'
+    }
+
+    try {
+      stage('Build and Test') {
+        sh 'mvn test'
+      }
+    } finally {
+      stage('Report Test Results') {
+        step([$class: 'JUnitResultArchiver', testResults: 'ui/target/test-report.xml'])
+        publishHTML (target: [
+          allowMissing: false,
+          alwaysLinkToLastBuild: false,
+          keepAll: true,
+          reportDir: 'ui/target/coverage',
+          reportFiles: 'index.html',
+          reportName: "Test Coverage"
+        ])
+      }
+    }
+
+    // Extra config for maven
+    if (env.BRANCH_NAME == "master") {
+      stage('Install') {
+        sh 'mvn install -DskipTests'
+      }
+    }
+  } catch (e) {
+    err = e
+    currentBuild.result = "FAILURE"
+  } finally {
+    if (currentBuild.result != "ABORTED") {
+      // Send e-mail notifications for failed or unstable builds.
+      // currentBuild.result must be non-null for this step to work.
+      step([$class: 'Mailer',
+        notifyEveryUnstableBuild: true,
+        recipients: emailextrecipients([
+          [$class: 'CulpritsRecipientProvider'],
+          [$class: 'DevelopersRecipientProvider'],
+          [$class: 'RequesterRecipientProvider'],
+          [$class: 'UpstreamComitterRecipientProvider']
+        ]),
+        sendToIndividuals: true])
+    }
+
+    // Must re-throw exception to propagate error
+    if (err) {
+      throw err
+    }
+  }
+}

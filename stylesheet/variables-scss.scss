@@ -1,0 +1,30 @@
+$text-primary: inherit;
+$text-warning: #ffc107;
+$text-success: #8bc34a;
+$text-danger: #ef5350;
+$text-info: #00bcd4;
+
+$font: 100%, $text-primary;
+$line-height: $font-size * 1.6;
+
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-warning {
+  color: $text-warning;
+}
+
+.text-success {
+  color: $text-success;
+}
+
+.text-danger {
+  color: $text-danger;
+}
+
+.text-info {
+  color: $text-info;
+}

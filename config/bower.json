@@ -1,0 +1,19 @@
+{
+  "main": "release/cucumber.js",
+  "keywords": [
+    "testing",
+    "bdd",
+    "cucumber",
+    "gherkin",
+    "tests"
+  ],
+  "ignore": [
+    "**/.*",
+    "bin",
+    "bower_components",
+    "examples"
+    "lib"
+    "node_modules",
+    "test"
+  ]
+}

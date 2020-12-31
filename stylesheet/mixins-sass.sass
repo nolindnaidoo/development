@@ -1,0 +1,47 @@
+@mixin for-size($range) {
+  $mobile: 600px;
+  $tablet-portrait: 900px;
+  $tablet-landscape: 1200px;
+  $desktop: 1800px;
+
+  @if $range == phone-only {
+    @media (max-width: #{$mobile - 1}) { @content; }
+  } @else if $range == tablet-portrait-up {
+    @media (min-width: $mobile) { @content; }
+  } @else if $range == tablet-portait-only {
+    @media (min-width: $mobile) and (max-width: #{$tablet-portrait - 1}) { @content; }
+  } @else if $range == tablet-landscape-up {
+    @media (min-width: $tablet-landscape) { @content; }
+  } @else if $range == tablet-landscape-only {
+    @media (min-width: $tablet-portrait) and (max-width: $tablet-landscape - 1px) { @content; }
+  } @else if $range == desktop-up {
+    @media (min-width: $tablet-landscape) { @content; }
+  } @else if $range == desktop-only {
+    @media (min-width: $tablet-landscape) and (max-width: $desktop - 1px) { @content; }
+  } @else if $range == big-desktop-up {
+    @media (min-width: $desktop) { @content; }
+  }
+}
+
+@mixin scale($x, $y)
+	transform: scale($x,$y)
+  -webkit-transform: scale($x,$y) /* Safari and Chrome */
+	-ms-transform: scale($x,$y) /* IE 9 */
+
+@mixin img($url, $w, $h)
+	background:  url($url) 0 0 no-repeat
+	width: $w
+	height: $h
+
+@mixin texto($font, $size, $color)
+  color: $color
+	margin: 0
+  padding: 0
+	font-family: $font
+	font-size: $size
+  font-weight: normal
+  letter-spacing: 0.1em
+
+@mixin shadow($x, $y, $blur, $color)
+	text-shadow: $x $y $blur $color
+	filter: Shadow(Color=$color, Direction=130, Strength=1)
