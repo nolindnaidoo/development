@@ -1,4 +1,4 @@
-  * # Development
+# Development
 
 Development asset samples in frontend, unit testing, end-to-end testing, integration testing, API testing, devops, continuous integration, continuous deployment and more.
 
